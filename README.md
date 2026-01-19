@@ -43,46 +43,6 @@ source venv/bin/activate
 
 **重要**: 単語単位のトークン化を使用するには、システムレベルでMeCabをインストールする必要があります。MeCabがインストールされていない場合、アプリケーションは簡易版トークン化（文字種ごとの区分）で動作します。
 
-#### macOSの場合
-
-**Homebrewが必要です。** Homebrewがインストールされていない場合は、[Homebrew公式サイト](https://brew.sh/)からインストールしてください。
-
-```bash
-# MeCabと辞書をインストール
-brew install mecab mecab-ipadic
-
-# インストールの確認（オプション）
-mecab --version
-```
-
-#### Linux（Ubuntu/Debian）の場合
-
-```bash
-# パッケージリストを更新
-sudo apt-get update
-
-# MeCabと辞書をインストール
-sudo apt-get install mecab libmecab-dev mecab-ipadic-utf8
-
-# インストールの確認（オプション）
-mecab --version
-```
-
-#### Linux（その他のディストリビューション）
-
-- **Fedora/RHEL**: `sudo dnf install mecab mecab-devel mecab-ipadic`
-- **Arch Linux**: `sudo pacman -S mecab mecab-ipadic`
-
-#### Windowsの場合
-
-WindowsでのMeCabのセットアップは複雑です。以下のいずれかの方法を使用してください：
-
-1. **WSL（Windows Subsystem for Linux）を使用（推奨）**: 
-   - WSLをインストール後、Linuxの手順に従ってください
-   
-2. **簡易版トークン化を使用**: 
-   - MeCabなしで動作しますが、単語単位の分割は行われません（文字種ごとの区分になります）
-
 ### 4. Python依存パッケージのインストール
 
 ```bash
@@ -135,7 +95,7 @@ python -c "from src.tokenize import tokenize; result = tokenize('人工知能技
 streamlit run app.py
 ```
 
-ブラウザが自動的に開き、アプリケーションが表示されます。開かない場合は、コンソールに表示されるURL（通常は `http://localhost:8501`）をブラウザで開いてください。
+ブラウザが自動的に開き、アプリケーションが表示されます。開かない場合は、コンソールに表示されるURLをブラウザで開いてください。
 
 ### トラブルシューティング
 
@@ -226,9 +186,3 @@ ocr_search_highlighter/
 - **数値計算**: numpy
 - **データ処理**: pandas
 - **深層学習フレームワーク**: torch（sentence-transformersの依存）
-
-## パフォーマンス
-
-- テキストが変わらない限り、トークン化と埋め込み計算の結果をキャッシュして再利用
-- 初回の埋め込み計算後は、クエリ変更時は高速に動作
-- 長文テキストの場合、初回の埋め込み計算に時間がかかる場合があります
